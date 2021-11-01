@@ -29,13 +29,12 @@ public class StudentList extends DLL {
         String studentRank;
         int count = 0;
         int subCount = 1;
-        System.out.print("Enter the number of students that you want to add: ");
-        count = Integer.parseInt(sc.nextLine());
+        count = MyToys.getAnInteger("Enter the number of students that you want to add: ", "Wrong format please input an integer!! Try again");
         while (count > 0) {
             System.out.println("You are preparing to add a student #" + subCount);
             studentName = MyToys.getString("Enter the name of student: ", "The name of student is required");
             studentClass = MyToys.getString("Enter the class of student: ", "The class of student is required");
-            avgGrade = MyToys.getADouble("Enter the average  of student: ", "Wrong format! Try again");
+            avgGrade = MyToys.getADouble("Enter the average  of student: ", "Mark must be from 0 to 10!!", 0, 10);
             studentRank = MyToys.getString("Enter the rank of student: ", "The rank of student is required");
             Student stu = new Student(studentName, studentClass, avgGrade, studentRank);
             this.add(stu);
@@ -122,8 +121,7 @@ public class StudentList extends DLL {
         if (head == null) {
             System.out.println("List is empty");
             return;
-        }
-        else if (current.info.studentClass.equalsIgnoreCase(studentClass)) {
+        } else if (current.info.studentClass.equalsIgnoreCase(studentClass)) {
             System.out.println("The student list of class " + studentClass + ":");
             while (current != null) {
                 System.out.println(current.info.toString() + " ");
